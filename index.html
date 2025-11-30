@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>《禁断のコード セブンデイズ》起動</title>
+    <style>
+        /* 1. 全体の基盤 (背景とフォント) */
+        body {
+            background-color: #0d1a26; 
+            color: #ffcc00; 
+            font-family: 'Courier New', 'Lucida Console', monospace; 
+            text-align: center;
+            padding: 0; 
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        /* 2. タイトルとメッセージ */
+        h1 {
+            color: #ff33cc; 
+            text-shadow: 0 0 8px #ff33cc;
+            font-size: 2.8em; 
+            font-family: 'Georgia', 'Times New Roman', serif; 
+            margin-top: 20px;
+            margin-bottom: 5px;
+        }
+        #subtitle {
+            color: #00ff66;
+            font-size: 1.2em;
+            margin-bottom: 30px;
+        }
+
+        /* 3. ボタンデザイン */
+        #summon-button {
+            background-color: #33ccff;
+            color: black;
+            padding: 15px 30px;
+            font-size: 1.5em;
+            border: 2px solid #33ccff;
+            border-radius: 5px;
+            cursor: pointer;
+            box-shadow: 0 0 15px #33ccff;
+            transition: all 0.3s ease;
+            margin-bottom: 40px;
+        }
+        #summon-button:hover {
+            box-shadow: 0 0 25px #66e0ff;
+            transform: scale(1.05);
+        }
+
+        /* 4. コード表示エリア (画像のみを表示するためのコンテナ) */
+        #code-display {
+            display: none; 
+            flex-grow: 1; 
+            width: 100%;
+            overflow: hidden; 
+        }
+
+        /* 5. 画像を画面いっぱいに表示 */
+        #code-image {
+            width: 100%;
+            height: 100%;
+            object-fit: contain; 
+            border: none;
+            box-shadow: none;
+            margin: 0;
+            padding: 0;
+            display: block;
+        }
+
+        /* 6. 端末メッセージ (削除しましたが、上下のスペースを確保するために調整) */
+        /* 今回は削除したので、bodyのpaddingで対応します */
+    </style>
+</head>
+<body>
+
+    <h1>《禁断のコード セブンデイズ》</h1>
+    <p id="subtitle">《禁断の起源 コード・ゼロ》タマシード起動</p>
+    
+    <button id="summon-button" onclick="startSummon()">
+        【禁断召喚】端末同化！
+    </button>
+    
+    <div id="code-display">
+        <img id="code-image" src="" alt="今日の禁断機動コード">
+    </div>
+
+    <script>
+        const day = new Date().getDay(); // 0=日, 1=月, ..., 6=土
+        const daysOfWeek = ["日", "月", "火", "水", "木", "金", "土"];
+        
+        // 曜日とファイル名、コード名のマッピング
+        const codeMap = {
+            0: ["1_日曜.png", "禁断光臨"], 
+            1: ["2_月曜.png", "禁断支配"], 
+            2: ["3_火曜.png", "禁断炎上"], 
+            3: ["4_水曜.png", "禁断奔流"], 
+            4: ["5_木曜.png", "禁断繁茂"], 
+            5: ["6_金曜.png", "禁断防御"], 
+            6: ["7_土曜.png", "禁断終焉"]
+        };
+
+        function startSummon() {
+            const todayCode = codeMap[day];
+
+            // 1. ボタンを消す
+            document.getElementById('summon-button').style.display = 'none';
+            
+            // 2. コード能力を表示（画面全体に変身）
+            document.getElementById('code-display').style.display = 'flex';
+
+            // 3. 画像と情報の更新
+            document.getElementById('code-image').src = 'images/' + todayCode[0]; 
+            
+            // 4. 上部のテキストを非表示（画像を際立たせるため）
+            document.querySelector('h1').style.display = 'none';
+            document.getElementById('subtitle').style.display = 'none';
+        }
+    </script>
+</body>
+</html>
